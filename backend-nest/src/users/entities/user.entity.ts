@@ -13,4 +13,13 @@ export class User {
 
   @Column()
   password: string; 
+    
+  @Column()
+  confirmPassword:string
+
+  @Column()
+  createdAt: Date;
+
+  @Column()
+  updatedAt: Date;
 }

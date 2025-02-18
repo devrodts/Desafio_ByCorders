@@ -3,5 +3,7 @@ export class UpdateUserDTO {
     email?: string;
     password?: string;
     confirmPassword?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 

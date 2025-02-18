@@ -4,7 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TransactionsModule } from './transactions/modules';
 import { TransactionEntity } from './transactions/entities';
 import { AuthModule } from './auth/modules';
-
+import { UsersModule } from './users/modules/user.module';
 const databasePort = process.env.DATABASE_PORT || 5432;
 @Module({
   imports: [
@@ -21,6 +21,7 @@ const databasePort = process.env.DATABASE_PORT || 5432;
     }),
     TransactionsModule,
     AuthModule,
+    UsersModule,
   ],
 })
 export class AppModule {}

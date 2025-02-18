@@ -3,6 +3,7 @@ import { DataSource, Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { UpdateUserDTO } from '../dtos/update-user.dto';
 import { CreateUserDTO } from '../dtos';
+import { UserDTO } from '../dtos/user.dto';
 
 @Injectable()
 export class UserRepository extends Repository<User> {
@@ -10,11 +11,11 @@ export class UserRepository extends Repository<User> {
     super(User, dataSource.createEntityManager());
   }
 
-  async findOneByUsername(username: string): Promise<User | null> {
-    return this.findOne({ where: { name: username } });
+    async findOneByUsername(username: string): Promise<UserDTO | null> {
+        return this.findOne({ where: { name: username } });
   }
 
-  async findOneById(id: number): Promise<User | null> {
+  async findOneById(id: number): Promise<UserDTO | null> {
     return this.findOne({ where: { id } });
   }
 
@@ -36,6 +37,10 @@ export class UserRepository extends Repository<User> {
 
     if (password) {
       user.password = password;
+    }
+
+    if (confirmPassword) {
+      user.confirmPassword = confirmPassword;
     }
 
     return user;
