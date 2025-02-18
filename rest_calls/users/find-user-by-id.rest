@@ -1,0 +1,7 @@
+# ## Find User By Id
+
+# GET http://localhost:3000/users/1
+# Authorization: Bearer {{token}}     
+
+
+
