@@ -5,6 +5,8 @@ import { TransactionsModule } from './transactions/modules';
 import { TransactionEntity } from './transactions/entities';
 import { AuthModule } from './auth/modules';
 import { UsersModule } from './users/modules/user.module';
+import { User } from './users/entities/user.entity';
+import { UserRepository } from './users/repositories/user.repository';
 const databasePort = process.env.DATABASE_PORT || 5432;
 @Module({
   imports: [
@@ -16,9 +18,10 @@ const databasePort = process.env.DATABASE_PORT || 5432;
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [TransactionEntity],
+      entities: [TransactionEntity, User, UserRepository],
       synchronize: true, 
     }),
+    TypeOrmModule.forFeature([User]),
     TransactionsModule,
     AuthModule,
     UsersModule,
