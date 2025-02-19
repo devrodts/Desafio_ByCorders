@@ -1,0 +1,13 @@
+### Update User
+
+PUT http://localhost:3000/users/85e2a1f0-f8a4-4e10-aa23-d69eb0275061
+
+Content-Type: application/json
+
+{
+    "username": "Rod",
+    "email": "dev_rodts@outlook.com",
+    "password": "password123",
+}
+
+
