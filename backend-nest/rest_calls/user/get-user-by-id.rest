@@ -1,0 +1,4 @@
+## Get User By Id
+
+GET http://localhost:3000/users/2ea05a76-b980-4087-8e63-2a7f5ad52ea4
+
