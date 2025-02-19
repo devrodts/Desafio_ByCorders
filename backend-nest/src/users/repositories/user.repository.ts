@@ -5,30 +5,39 @@ import { UpdateUserDTO } from '../dtos/update-user.dto';
 import { CreateUserDTO } from '../dtos';
 import { UserDTO } from '../dtos/user.dto';
 
+
 @Injectable()
 export class UserRepository extends Repository<User> {
-  constructor(private dataSource: DataSource) {
+  constructor(private readonly dataSource: DataSource) {
     super(User, dataSource.createEntityManager());
   }
 
     async findOneByUsername(username: string): Promise<UserDTO | null> {
-        return this.findOne({ where: { name: username } });
+        const user = await this.findOne({ where: { username: username } });
+        if (!user) {  
+            throw new NotFoundException('Usuário não encontrado');
+        }
+        
+        return user;
   }
 
-  async findOneById(id: number): Promise<UserDTO | null> {
+  async findOneById(id: string): Promise<UserDTO | null> {
     return this.findOne({ where: { id } });
   }
 
-  async updateUser(id: number, updateUserDto: UpdateUserDTO): Promise<UpdateUserDTO> {
+  async updateUser(id: string, updateUserDto: UpdateUserDTO): Promise<UpdateUserDTO> {
+
     const user = await this.findOneById(id);
+
+
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
     }
 
-    const { name, email, password, confirmPassword } = updateUserDto;
+    const { username, email, password, } = updateUserDto;
 
-    if (name) {
-      user.name = name;
+    if (username) {
+      user.username = username;
     }
 
     if (email) {
@@ -39,11 +48,9 @@ export class UserRepository extends Repository<User> {
       user.password = password;
     }
 
-    if (confirmPassword) {
-      user.confirmPassword = confirmPassword;
-    }
 
-    return user;
+    const updatedUser = await this.save(user);
+    return updatedUser;
   }
 
   async removeUser(id: number): Promise<void> {
@@ -51,6 +58,14 @@ export class UserRepository extends Repository<User> {
   }
 
   async createUser(user: CreateUserDTO): Promise<User> {
-    return this.save(user);
+    const newUser = this.create({
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        confirmPassword: user.confirmPassword,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    });
+    return this.save(newUser);
   }
 }
