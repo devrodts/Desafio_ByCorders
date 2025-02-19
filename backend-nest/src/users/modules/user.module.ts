@@ -7,11 +7,11 @@ import { UserRepository } from '../repositories/user.repository';
 import { AuthModule } from '../../auth/modules';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User, UserRepository]), 
+    TypeOrmModule.forFeature([User]), 
     forwardRef(() => AuthModule),
   ],
-  providers: [UsersService],
+  providers: [UsersService, UserRepository],
   controllers: [UsersController],
-  exports: [UsersService],
+  exports: [UsersService, UserRepository],
 })
 export class UsersModule {}
