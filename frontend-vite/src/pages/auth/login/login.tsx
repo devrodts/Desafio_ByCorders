@@ -1,10 +1,24 @@
 import TextInput from "../../../components/atoms/TextInput/TextInput"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from './login.module.css'
 import asideImage from '/aside.jpg'
+import { useNavigate } from "react-router-dom"
+
 
 const login = () => {
+    const router = useNavigate()
+    const [session, setSession] = useState({
+        isAuthenticated: false,
+        user: null,
+    })
 
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (token) {
+            setSession({ isAuthenticated: true, user: null })
+        }
+        router('/dashboard')
+    }, [session])
 
     const [formData, setFormData] = useState({
         email: '',
