@@ -13,7 +13,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Cria um novo usuário' })
   @ApiBody({ type: CreateUserDTO })
     async create(@Body() createUserDto: CreateUserDTO) {
-    return this.usersService.createUser(createUserDto.name, createUserDto.password, createUserDto.confirmPassword);
+    return this.usersService.createUser(createUserDto.username, createUserDto.email, createUserDto.password, createUserDto.confirmPassword);
   }
 
 //   @Get()
@@ -31,16 +31,16 @@ export class UsersController {
 
   @Put(':id')
   @ApiOperation({ summary: 'Atualiza as informações de um usuário' })
-  @ApiParam({ name: 'id', type: 'number' })
+  @ApiParam({ name: 'id', type: 'string' })
   @ApiBody({ type: UpdateUserDTO })
-  async update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDTO) {
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDTO) {
     return this.usersService.updateUser(id, updateUserDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Deleta um usuário pelo ID' })
-  @ApiParam({ name: 'id', type: 'number' })
-  async remove(@Param('id') id: number) {
+  @ApiParam({ name: 'id', type: 'string' })
+  async remove(@Param('id') id: string) {
     return this.usersService.removeUser(id);
   }
 }
