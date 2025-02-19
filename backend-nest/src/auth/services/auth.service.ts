@@ -29,14 +29,17 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDTO) {
+
     const user = await this.validateUser(loginDto.email, loginDto.password);
+
     if (!user) {
       throw new Error('Usuário ou senha inválidos');
     }
+    console.log(user)
 
     const payload: JwtPayload = { username: user.email, sub: user.id };
     return {
-      access_token: this.jwtService.sign(payload), // Gera o token JWT
+      access_token: this.jwtService.sign(payload),
     };
   }
 
@@ -51,6 +54,10 @@ export class AuthService {
     });
     await this.userRepository.save(user);
     return user;
+  }
+
+  async check(req: Request) {
+    return req.json();
   }
   
 }

@@ -1,0 +1,94 @@
+.container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .searchContainer {
+    margin-bottom: 2rem;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .storesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+  }
+  
+  .storeCard {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+  }
+  
+  .storeHeader {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .storeHeader h2 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+  }
+  
+  .total {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+  
+  .positive {
+    color: #27ae60;
+  }
+  
+  .negative {
+    color: #e74c3c;
+  }
+  
+  .transactionsTable {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th {
+    background-color: #f8f9fa;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  td {
+    padding: 0.75rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .storesGrid {
+      grid-template-columns: 1fr;
+    }
+    
+    .storeCard {
+      margin-bottom: 1rem;
+    }
+  }

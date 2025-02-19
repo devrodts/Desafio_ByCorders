@@ -1,23 +1,23 @@
 import { MenuItem } from '../../molecules/MenuItem/MenuItem';
 import styles from './Sidebar.module.css';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { SpanText } from '../../atoms/SpanText/SpanText';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+
+// import LogoutIcon from '@mui/icons-material/Logout';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-import SettingsIcon from '@mui/icons-material/Settings';
-import DashboardIcon from '@mui/icons-material/Dashboard';
+  import ReceiptIcon from '@mui/icons-material/Receipt';
+  import ByCoders from "../../../assets/bycorders.svg"
+  // import { useAuth } from '../../../context/auth/AuthContext';
 
 type MenyItemsType = {
   icon: React.ReactNode;
   label: string;
   path: string;
 }
-
+// const { logout } = useAuth();
 const menuItems: MenyItemsType[] = [
-  { icon: <DashboardIcon />, label: 'Dashboard', path: '/dashboard' },
-  { icon: <SettingsIcon />, label: 'Settings', path: '/dashboard/settings' },
+  { icon: <ReceiptIcon />, label: 'Transactions', path: '/dashboard/transactions' },
   { icon: <UploadFileIcon />, label: 'Upload', path: '/dashboard/upload' },
-  { icon: <LogoutIcon />, label: 'Logout', path: '/logout' },
+  // { icon: <LogoutIcon  onClick={() => logout()}/>, label: 'Logout', path: '/logout' },
 ];
 
 export const Sidebar = () => {
@@ -28,7 +28,14 @@ export const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>
-        <SpanText variant="title">Your Logo</SpanText>
+        <Link to="/">
+          <img 
+            width={150}
+            height={50}
+            src={ByCoders} 
+            alt="ByCoders" 
+          />
+        </Link>
       </div>
       <nav className={styles.nav}>
         {menuItems.map((item) => (

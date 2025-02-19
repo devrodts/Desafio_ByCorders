@@ -7,6 +7,7 @@ import { AuthModule } from './auth/modules';
 import { UsersModule } from './users/modules/user.module';
 import { User } from './users/entities/user.entity';
 import { UserRepository } from './users/repositories/user.repository';
+import { DropTableMigration1739987723561 } from './migrations/1739987723561-DropTableMigration';
 const databasePort = process.env.DATABASE_PORT || 5432;
 @Module({
   imports: [
@@ -19,6 +20,7 @@ const databasePort = process.env.DATABASE_PORT || 5432;
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       entities: [TransactionEntity, User, UserRepository],
+      migrations: [DropTableMigration1739987723561],
       synchronize: true, 
     }),
     TypeOrmModule.forFeature([User]),

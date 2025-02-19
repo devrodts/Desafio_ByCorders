@@ -34,6 +34,8 @@ export class TransactionsService {
         time: line.substring(42, 48),
         storeOwner: line.substring(48, 62).trim(),
         storeName: line.substring(62, 81).trim(),
+        nature: line[81] === '1' ? 'Entrada' : 'Saída',
+        sign: line[81] === '1' ? '+' : '-',
       };
 
       await this.createTransaction(transactionDto);

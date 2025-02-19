@@ -1,4 +1,4 @@
-import { IsInt, IsNumber, IsString, Length } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsString, Length, IsOptional } from 'class-validator';
 
 export class CreateTransactionDTO{
 
@@ -31,4 +31,12 @@ export class CreateTransactionDTO{
   @IsString()
   @Length(1, 19)
   storeName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  nature: 'Entrada' | 'Saída';
+
+  @IsString()
+  @IsNotEmpty()
+  sign: '+' | '-';
 }

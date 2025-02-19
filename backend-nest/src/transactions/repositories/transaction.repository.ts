@@ -12,7 +12,7 @@ export class TransactionRepository {
   ) {}
 
   async save(transactionData: CreateTransactionDTO): Promise<TransactionEntity> {
-    const transaction = this.repository.create(transactionData);
+    const transaction = this.repository.create(transactionData as TransactionEntity);
     return this.repository.save(transaction);
   }
 

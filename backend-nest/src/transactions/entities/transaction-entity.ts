@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { IsOptional } from 'class-validator';
 @Entity('transactions')
 export class TransactionEntity {
   @PrimaryGeneratedColumn()
@@ -28,4 +28,12 @@ export class TransactionEntity {
 
   @Column()
   storeName: string;
+
+  @Column({ nullable: true })
+  @IsOptional()
+  nature: 'Entrada' | 'Saída';
+
+  @Column({ nullable: true })
+  @IsOptional()
+  sign: '+' | '-';
 }

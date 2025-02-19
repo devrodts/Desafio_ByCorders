@@ -3,20 +3,20 @@ import { useState } from "react"
 import styles from './register.module.css'
 import asideImage from '/aside.jpg'
 import { registerUser } from "../../../../services"
+import { useNavigate } from "react-router-dom"
 
-
-const register = () => {
-
+const RegisterPage = () => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         email: '',
-        name: '',
+        username: '',
         password: '',
         confirmPassword: '',
     })
 
     const [errors, setErrors] = useState({
         email: '',
-        name: '',
+        username: '',
         password: '',
         confirmPassword: '',
     })
@@ -36,6 +36,7 @@ const register = () => {
             }
 
             console.log(response)
+            navigate('auth/login')
         } catch (error) {
             console.error('Erro ao registrar usuário:', error)
         }
@@ -48,7 +49,7 @@ const register = () => {
         <form className={styles.form} onSubmit={handleSubmit}>
             <h1>Register</h1>
             <section className={styles.section}>
-                <TextInput label="Name" name="name" type="text" placeholder="Name" value={formData.name} onChange={handleChange} error={errors.name} />
+                <TextInput label="Username" name="username" type="text" placeholder="Username" value={formData.username} onChange={handleChange} error={errors.username} />
 
                 <TextInput 
                     label="Email" 
@@ -88,4 +89,4 @@ const register = () => {
   )
 }
 
-export default register
+export default RegisterPage

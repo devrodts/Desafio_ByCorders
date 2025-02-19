@@ -4,7 +4,9 @@ import { AuthState } from "./interfaces/state.interface";
 export const initialState: AuthState = {
     isAuthenticated: false,
     user: null,
-    token: null,
+    access_token: null,
+    login: async () => {},
+    logout: () => {},
 }
 
 export const authReducer = (state: AuthState, action: AuthAction) => {

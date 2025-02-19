@@ -3,7 +3,7 @@ import { AuthResponse } from "../interfaces/auth-response";
 const API_BASE_URL = "http://localhost:3000";
 
 export const registerUser = async (userData: {
-  name: string;
+  username: string;
   email: string;
   password: string;
   confirmPassword: string;
