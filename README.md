@@ -20,9 +20,10 @@ O projeto está organizado em 4 principais diretórios:
 ## 💻 Tecnologias Utilizadas
 
 ### Backends
-- **NestJS**: Framework Node.js progressivo com TypeScript
-- **Express.js**: Framework web minimalista para Node.js
-- **Hono.js**: Framework web leve e rápido para edge computing
+- **NestJS**: Framework Node.js progressivo com TypeScript (concluído)
+
+- **Express.js**: Framework web minimalista para Node.js (Em andamento)
+- **Hono.js**: Framework web leve e rápido para edge computing (Em Andamento)
 
 ### Frontend
 - **React**: Biblioteca JavaScript para construção de interfaces
@@ -37,7 +38,7 @@ O projeto está organizado em 4 principais diretórios:
 cd backend-nest
 
 # Instalação de dependências
-npm install
+yarn install
 
 # Configurar variáveis de ambiente
 cp .env.example .env
@@ -45,11 +46,9 @@ cp .env.example .env
 # Iniciar o banco de dados
 docker-compose up -d
 
-# Executar migrations
-npx prisma migrate dev
 
 # Iniciar em modo desenvolvimento
-npm run start:dev
+yarn start:dev
 ```
 
 ### Backend Express
@@ -100,10 +99,10 @@ npm run dev
 cd frontend
 
 # Instalação de dependências
-npm install
+yarn install
 
 # Iniciar em modo desenvolvimento
-npm run dev
+yarn dev
 ```
 
 ## 🔧 Configuração do Ambiente
