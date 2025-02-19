@@ -7,12 +7,15 @@ import { JwtPayload } from '../interfaces/jwt-payload.interface';
 import { RegisterDTO } from '../dtos';
 import { InvalidParamsError } from '../errors/invalid-name';
 import { HttpStatusCode } from '../errors/http-status-code';
+import { UserRepository } from 'src/users/repositories/user.repository';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly usersService: UsersService,
+    private readonly userRepository: UserRepository,
   ) {}
 
 
@@ -37,19 +40,17 @@ export class AuthService {
     };
   }
 
-  async register(registerDto: RegisterDTO) {
-    const { name, email, password, confirmPassword } = registerDto;
-
-    if (password !== confirmPassword) {
-      throw new Error('As senhas não coincidem');
-    }
-    if (name === null || email === null || password === null || confirmPassword === null) {
-      throw new InvalidParamsError('Todos os campos são obrigatórios', HttpStatusCode.BAD_REQUEST);
-    }
-
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    const user = await this.usersService.createUser(name, hashedPassword, confirmPassword);
-
+  async createUser(email: string, username: string, password: string, confirmPassword: string): Promise<User> { 
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+    const user = this.userRepository.create({ 
+      email: email, 
+      username: username, 
+      password: hashedPassword, 
+      confirmPassword: hashedPassword 
+    });
+    await this.userRepository.save(user);
     return user;
   }
+  
 }
