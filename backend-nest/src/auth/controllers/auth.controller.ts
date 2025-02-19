@@ -13,6 +13,6 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() registerDto: RegisterDTO) {
-    return this.authService.register(registerDto); // Chama o serviço de registro
+    return this.authService.createUser(registerDto.email, registerDto.username, registerDto.password, registerDto.confirmPassword); // Chama o serviço de registro
   }
 }
