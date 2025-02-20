@@ -6,7 +6,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import MenuIcon from '@mui/icons-material/Menu';
 import ByCoders from "../../../assets/bycorders.svg";
-
+import LogoutButton from '../../atoms/LogoutButton/LogoutButton';
 // import LogoutIcon from '@mui/icons-material/Logout';
 // import { useAuth } from '../../../context/auth/AuthContext';
 
@@ -61,8 +61,11 @@ export const Sidebar = () => {
                
                 setIsSidebarOpen(false);
               }}
-            />
+            /> 
           ))}
+          <div className={styles.logoutButton}>
+            <LogoutButton />
+            </div>
         </nav>
       </div>
     </>

@@ -12,7 +12,76 @@ O projeto está organizado em 2 principais diretórios:
 /
 ├── backend-nest/     # Implementação usando NestJS
 └── frontend/         # Interface web em React + Vite
+
+
+# API de Processamento de Transações CNAB
+
+Esta é uma API desenvolvida com NestJS para processamento de arquivos CNAB.
+
+## Pré-requisitos
+
+- Node.js (versão 16 ou superior)
+- Docker e Docker Compose
+- npm ou yarn
+
+## Configuração e Execução
+
+### 1. Clone o repositório
+
+```bash
+git clone <url-do-repositorio>
+cd <nome-do-projeto>
 ```
+
+### 2. Configuração do ambiente
+
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+
+```env
+# Configuração do Banco de Dados
+POSTGRES_USER=seu_usuario
+POSTGRES_PASSWORD=sua_senha
+POSTGRES_DB=nome_do_banco
+DATABASE_URL="postgresql://seu_usuario:sua_senha@localhost:5432/nome_do_banco?schema=public"
+
+# Configuração da API
+PORT=3000
+```
+
+### 3. Iniciando o banco de dados com Docker Compose
+
+```bash
+cd backend-nest
+docker-compose up -d
+```
+
+### 4. Se você preferir pode rodar toda a aplicação via Docker. 
+
+```bash
+docker build -t backend-nest .
+docker run -p 3000:3000 --env-file .env backend-nest
+```
+
+### 5. Se você preferir rodar a aplicação sem Docker. 
+
+```bash
+cd backend-nest
+docker-compose up -d
+yarn install
+nest start
+```
+
+## Endpoints da API
+
+### Upload de arquivo CNAB
+- **POST** `/transactions/upload`
+  - Envie um arquivo CNAB através de uma requisição multipart/form-data
+  - Campo do arquivo: `file`
+
+### Listar todas as transações
+- **GET** `/transactions`
+  - Retorna todas as transações processadas
+
 
 ## 💻 Tecnologias Utilizadas
 

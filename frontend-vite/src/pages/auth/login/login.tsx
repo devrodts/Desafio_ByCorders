@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/auth/AuthContext";
 
 const LoginPage = () => {
+  
   const { state, login } = useAuth();
   const navigate = useNavigate();
 
