@@ -1,11 +1,14 @@
 import TextInput from "../../../components/atoms/TextInput/TextInput"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from './register.module.css'
 import asideImage from '/aside.jpg'
 import { registerUser } from "../../../../services"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../../../context/auth/AuthContext"
 
 const RegisterPage = () => {
+    const {state} = useAuth();
+
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         email: '',
@@ -34,13 +37,17 @@ const RegisterPage = () => {
             if(!response.ok){
                 setErrors({ ...errors, email: response.message || 'Erro ao registrar usuário' })
             }
-
-            console.log(response)
-            navigate('auth/login')
+            navigate('/auth/login')
         } catch (error) {
             console.error('Erro ao registrar usuário:', error)
         }
     }
+
+    useEffect(() => {
+        if(state.isAuthenticated){
+            navigate('/dashboard/')
+        }
+    }, [state.isAuthenticated])
     
   return (
     <div className={styles.container}>

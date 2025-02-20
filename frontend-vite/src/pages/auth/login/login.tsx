@@ -27,7 +27,7 @@ const LoginPage = () => {
     e.preventDefault();
     
     await login(formData.email, formData.password).then(() => {
-      navigate("/dashboard");
+      navigate("");
     }).catch((error) => {
       console.error('Error logging in:', error)
     })  

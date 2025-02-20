@@ -45,6 +45,7 @@ const UploadPage = () => {
       <h2>Upload de Arquivo CNAB</h2>
       <form onSubmit={handleSubmit} className={styles.uploadForm}>
         <input
+          className={styles.uploadInput}
           type="file"
           accept=".txt"
           onChange={handleFileChange}
