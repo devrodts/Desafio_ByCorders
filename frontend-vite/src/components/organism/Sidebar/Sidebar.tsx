@@ -16,11 +16,9 @@ type MenyItemsType = {
   path: string;
 };
 
-// const { logout } = useAuth();
 const menuItems: MenyItemsType[] = [
   { icon: <ReceiptIcon />, label: 'Transactions', path: '/dashboard/transactions' },
   { icon: <UploadFileIcon />, label: 'Upload', path: '/dashboard/upload' },
-  // { icon: <LogoutIcon  onClick={() => logout()}/>, label: 'Logout', path: '/logout' },
 ];
 
 export const Sidebar = () => {
@@ -40,8 +38,10 @@ export const Sidebar = () => {
       
       <div className={`${styles.sidebar} ${isSidebarOpen ? styles.active : ''}`}>
         <div className={styles.logo}>
-          <Link to="/">
+          <Link to="/" style={{ background: "transparent"}}>
             <img 
+              onClick={() => {}}
+              className={styles.logo}
               width={150}
               height={50}
               src={ByCoders} 
